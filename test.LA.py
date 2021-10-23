@@ -1,3 +1,4 @@
+import pytest
 import LA
 
 def test_add_vectors():
@@ -51,3 +52,34 @@ def test_matr_matr_multi():
     matrix_4 = [[2, 1], [5, 2]]
     assert LA.matr_matr_multi(matrix_1,matrix_2) == [[15,32],[53,107]]
     assert LA.matr_matr_multi(matrix_3,matrix_4) == [[28,12],[38,16]] 
+
+    
+    
+#HW 4 test.LA Edits
+
+
+def test_abs_value():
+    assert LA.abs_value(4+3j) == 5
+    assert LA.abs_value(-7j) == 7
+    assert LA.abs_value(-8j-6) == 10
+
+
+def test_pnorm_finite():
+    assert LA.pnorm_finite([3, 4]) == 5
+    assert LA.pnorm_finite([5, 12]) == 13
+
+
+def test_infnorm():
+    assert LA.infnorm([3, 4, 5, 7]) == 7
+    assert LA.infnorm([3,0,4-5j]) == 6.4031242374328485
+
+
+def test_p_norm():
+    assert LA.p_norm([3, 4j+3]) == 5.830951894845301
+    assert LA.p_norm([3, 4j+3],infinite = True) == 5
+
+
+def test_inpro():
+    assert LA.inpro(([1,2,3], [3,2,1])) == 10
+    assert LA.inpro([complex(1, 8)], [complex(-3, 9)]) == (69+33j)
+
