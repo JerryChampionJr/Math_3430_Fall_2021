@@ -170,3 +170,126 @@ def matr_matr_multi(matrix_1: list[list[float]], matrix_2: list[list[float]]) ->
     for c in range(len(matrix_2)):
         matrixresult[c] = matr_vec_multi(matrix_1, matrix_2[c])
     return matrixresult
+
+  
+  
+  
+#HW 4 LA Edits
+
+#Problem 1 
+
+def cplx_conj(cplx: complex) -> float:
+    conj: complex = complex(cplx.real, -1 * cplx.imag)
+    return conj
+
+
+"""Finds the absolute value of a complex number
+    Multiply cplx by its complex conjugate using cplx_conj, then return the square root
+    of that product
+    Args:
+        cplx: a complex number
+    Returns:
+        The absolute value of the input cplx number
+"""
+
+def abs_value(cplx: complex) -> float:
+    result: float = (cplx * cplx_conj(cplx)) ** .5
+    return result.real
+
+
+
+#Problem 2
+
+"""Finds the p-norm of a vector. For every element i in vector, add i^p to the total. Then take
+    the pth root of that total sum, and return it
+    Args:
+        cplx: a list of complex numbers, representing a vector
+        p: a float. Must be real and >= 1.
+    Returns:
+        The finite p norm of vector
+"""
+
+def pnorm_finite(cplx: list[complex], p: float=2) -> float:
+    result: float = 0
+    for i in cplx:
+        result += (abs_value(i) ** p)
+    result **= (1 / p)
+    return result
+
+
+
+#Problem 3
+
+"""Finds the infinite norm of a vector.
+    Create a vector storing the absolute value for each element i in the vector.
+    Find and return the greatest of those elements
+    Args:
+        vec: a list of complex numbers, representing a vector
+    Returns:
+        The infinite norm of vector, which is the greatest absolute value of all
+        elements of vec.
+"""
+
+def infnorm(vec: list[complex]) -> float:
+    result: float = None
+    absval_vector = [abs_value(i) for i in vec]
+    result = max(absval_vector)
+    return result
+
+
+
+#Problem 4
+
+"""Finds the p-norm of a vector. Defaults to 2-norm. Can calulate inf norm to be true
+    or false
+    If infinite is False, find the norm using pnorm_finite().
+    If infinite is True, find the norm using infnorm()
+    Args:
+        vec: a list of complex numbers, representing a vector
+        p: a float integer which must be real and >= 1.
+        inf: a boolean value that acts as infinite if True
+    Returns:
+        The p norm of vector
+"""
+
+def pnorm(vec: list[complex], p: float=2, infinite: bool=False) -> float:
+    result: float = None
+    if not infinite:
+        result = pnorm_finite(vec, p)
+    else:
+        result = infnorm(vec)
+    return result
+
+
+
+#Problem 5
+
+"""Finds the inner product of two vectors.
+    Calculate the conjugate of leftvec, then multiply element-wise
+    this conjugate with rightvec, adding each term into result.
+    Return result as a float if it is real, or as complex otherwise
+    Args:
+        leftvec: a list of complex numbers, representing a vector.
+        rightvec: a list of complex numbers, representing a vector. Must
+                      be the same size as leftvec.
+    Returns:
+        The inner product of leftvec and rightvec
+"""
+
+def inpro(leftvec: list[complex], rightvec: list[complex]) -> complex:
+    left_vec: list[complex] = [cplx_conj(element) for element in leftvec]
+    result: complex = 0
+    for leftelement, rightelement in zip(left_vec, rightvec):
+        result += leftelement * rightelement
+    result = result.real if result.imag == 0 else result
+    return result
+
+
+
+
+
+  
+  
+  
+  
+  
