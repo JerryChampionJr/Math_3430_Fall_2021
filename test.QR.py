@@ -33,7 +33,7 @@ def test_orthonormalize():
 def equals_w_error(arg_a: list | complex, arg_b: list | complex, margin: float) -> bool:
     if hasattr(arg_a, '__iter__'):
         for var_a, var_b in zip(arg_a, arg_b):
-            if not equals_with_error(var_a, var_b, margin):
+            if not equals_w_error(var_a, var_b, margin):
                 return False
     else:
         if abs(arg_a - arg_b) > margin:
