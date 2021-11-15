@@ -83,3 +83,101 @@ def gram_schmidt(matrix: Matrix) -> list[Matrix, Matrix]:
 """
 def orthonormalize(matrix: Matrix) -> Matrix:
     return gram_schmidt(matrix)[0]
+
+
+# HW7 Champion
+# 11/15/2021
+# QR Edits
+
+
+#Problem 1:
+
+
+"""Finds the conjugate transpose of a matrix
+    Creates a matrix that is the conjugate transpose of the input matrix
+    Args:
+        matrix: A matrix, represented as a list of lists of complex numbers.
+    Returns:
+        The conjugate transpose of the matrix, represented in the same way.
+"""
+def matconj(matrix: Matrix) -> Matrix:
+    d_m: int = len(matrix[0])  
+    d_n: int = len(matrix)  
+    result: Matrix = [[matrix[row][col].conjugate()
+            for row in range(d_n)] for col in range(d_m)]
+    return result
+
+
+
+"""Finds the outer product of two column vectors
+    Calculate the conjugate transpose of right_vector and transform each
+    vector into a matrix representation. Multiply these vector-matrices using
+    the matrix multiply function, then return that matrix.
+    Args:
+        left_vector: a list of complex numbers
+        right_vector: a list of complex numbers
+    Returns:
+        The outer product matrix = left_vector right_vector
+"""
+def outer_product(left_vector: Vector, right_vector: Vector) -> Matrix:
+    right_vector_ct: Matrix = matconj([right_vector])
+    left_vector_m: Matrix = [left_vector]
+    result = LA.matr_matr_multi(left_vector_m, right_vector_ct)
+    return result
+
+
+
+"""Calculates q_k from the kth column of a matrix R for Householder QR
+    Performs the mathematical algorithm to calculate q_k for Householder QR
+    factorization.
+    Args:
+        matrix_r: (R), the original matrix from which q_k should be generated
+        k: which column should be used as the base to generate q_k
+    Returns:
+        A matrix q_k such that q_k * matrix_r sets the kth column of matrix_r
+        to be upper triangular
+"""
+def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
+    d_m = len(matrix_r[0])
+    q_k: Matrix
+    q_k = [[1 if i==j else 0 for i in range(d_m)] for j in range(d_m)]
+    vec_x: Vector = matrix_r[k][k:]
+    vec_v: Vector = q_k[k][k:]
+    v_scl: float = LA.pnorm(vec_x) * (1 if vec_x[0].real >= 0 else -1)
+    vec_v = LA.scalar_vec_multi(vec_v, v_scl)
+    vec_v = LA.add_vectors(vec_v, vec_x)
+    mat_f: Matrix = outer_product(vec_v, vec_v)
+    f_scl: float = -2 / LA.inner_product(vec_v, vec_v)
+    mat_f = LA.scalar_matrix_multi(mat_f, f_scl)
+    for i, f_col in enumerate(mat_f, start=k):
+        q_k[i] = LA.add_vectors(q_k[i][:k] + f_col, q_k[i])
+    return q_k
+
+
+
+"""Performs the householder method for QR factorization
+    Initialize matrix_q (Q) as an identity matrix with the same number of rows
+    as the input matrix, and matrix_r (R) as a copy of the input matrix. Then
+    find successive matrices Q_k such that Q_k * R sets the kth column of R
+    to be upper triangular. Update Q and R such that they are multiplied by
+    Q_k, then once R is upper triangular, take the conjugate transpose of Q.
+    Args:
+        matrix: The matrix to be factored, represented as a list of lists of
+          complex numbers
+    Returns:
+        A list of matrices, where the first element is the orthogonal matrix
+        Q and the second element is the upper triangular matrix R
+"""
+def householder(matrix: Matrix) -> list[Matrix, Matrix]:
+    d_m: int = len(matrix[0])
+    d_n: int = len(matrix)
+    matrix_q: Matrix
+    matrix_q = [[1 if i==j else 0 for i in range(d_m)] for j in range(d_m)]
+    matrix_r: Matrix = [column[:] for column in matrix]
+    for k, _ in enumerate(matrix_r):
+        mat_q_k = householder_qk(matrix_r, k)
+        matrix_r = LA.matr_matr_multi(mat_q_k, matrix_r)
+        matrix_q = LA.matr_matr_multi(mat_q_k, matrix_q)
+    matrix_q = matconj(matrix_q)
+    return [matrix_q, matrix_r]
+
