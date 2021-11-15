@@ -147,7 +147,7 @@ def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
     vec_v = LA.scalar_vec_multi(vec_v, v_scl)
     vec_v = LA.add_vectors(vec_v, vec_x)
     mat_f: Matrix = outer_product(vec_v, vec_v)
-    f_scl: float = -2 / LA.inner_product(vec_v, vec_v)
+    f_scl: float = -2 / LA.inpro(vec_v, vec_v)
     mat_f = LA.scalar_matrix_multi(mat_f, f_scl)
     for i, f_col in enumerate(mat_f, start=k):
         q_k[i] = LA.add_vectors(q_k[i][:k] + f_col, q_k[i])
