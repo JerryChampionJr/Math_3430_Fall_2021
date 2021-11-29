@@ -1,0 +1,10 @@
+Jerry Champion HW 9
+
+
+I would say the biggest advantage to using a floating point would be that you do not risk any possible rounding error and you get more accurate answers. 
+A floating point allows for many open decimal points as needed, so you could get any possible answer you needed. If you were getting a list of floating point numbers 
+you would have the greatest chance to get correct varied answers such as [1.2, 3.14159, 0.9876]. These are the most accuract answers but if we used a floating point
+we would only have the chance to get [1.2, 3.1, 1.0]. This list is very different. 
+
+The biggest downfall would be in storage and speed. Because a floating point can store very large and small numbers, it could potentially slow the processing speed and
+increase the storage.
