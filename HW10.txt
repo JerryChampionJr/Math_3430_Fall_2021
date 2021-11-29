@@ -1,0 +1,9 @@
+Champion HW 10
+
+
+Question 01)
+
+As a math major, I am sure there are already many programs for any sort of problems that I run into. However, as a biology and health professions minor, I
+can think of many unique codes to create. One program I would like to make is something that looks at a picture of an animal cell, and determines the amount of
+ribosomes. This is because if we can get that amount, then we can estimate how quickly a cell is synthesizing proteins. I think to do this we would need to utilize 
+t_kinter, which is something interesting to work on in general. 
