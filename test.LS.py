@@ -11,6 +11,6 @@ matrix2 = [[3,4,7], [2,9,6], [1,5,3]]
 vector2 = [1,4,2]
 
 def test_least_squares():
-    assert LS.least_squares(matrix1,vector1) == [(1+0j), (1.9999999999999991+0j)]
-    assert LS.Least_Squares(matrix2, vector2) == [0.49999999999943157,-4.499999999994543,8.499999999989086]
+    assert LS.least_squares(matrix1, vector1) == [(1+0j), (1.9999999999999991+0j)]
+    assert LS.least_Squares(matrix2, vector2) == [0.49999999999943157,-4.499999999994543,8.499999999989086]
 
