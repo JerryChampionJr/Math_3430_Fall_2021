@@ -3,8 +3,8 @@
 import LA
 
 
-
-"""Needs to normalize a vector
+def normalize(vector: Vector) -> list[Vector, float]:
+    """Needs to normalize a vector
     Calculate the norm of the vector. Then multiply the vector by the
     reciprocal of the norm. Return the vector and the norm as a list
     Args:
@@ -12,15 +12,14 @@ import LA
     Returns:
         A list, where the first element is the normalized vector and the
         second element is the norm of the original vector
-"""
-def normalize(vector: Vector) -> list[Vector, float]:
+    """
     norm: float = LA.pnorm(vector)
     result: Vector = LA.scalar_vec_multi(vector, 1/norm)
     return [result,norm]
 
 
-
-"""Calculate the vector rejection of vector on the basis
+def orthagonalize(vector: Vector, basis: Vector) -> list[Vector, complex]:
+    """Calculate the vector rejection of vector on the basis
     Calculate the inner product between vector and basis. Use that
     inner product to calculate the negated vector projection of the vector on
     basis, then subtract that from vector. Return that vector rejection and the
@@ -31,16 +30,15 @@ def normalize(vector: Vector) -> list[Vector, float]:
     Returns:
         A list, where the first element is the orthagonalized vector, and the
         second element is the inner product of the vectors used to calculate it
-"""
-def orthagonalize(vector: Vector, basis: Vector) -> list[Vector, complex]:
+    """
     factor: complex = LA.inpro(vector, basis)
     neg_proj: Vector = LA.scalar_vec_multi(basis, -1 * factor)
     result: Vector = LA.add_vectors(vector, neg_proj)
     return [result, factor]
 
 
-
-"""Does modified gs method for QR factorization
+def gram_schmidt(matrix: Matrix) -> list[Matrix, Matrix]:
+    """Does modified gs method for QR factorization
     initialize q_matrix (Q) to be a copy of the input matrix and
     r_matrix (R) to be a zero matrix. Then, iterate
     every column vector in Q. Normalize the vector and store it in
@@ -55,7 +53,6 @@ def orthagonalize(vector: Vector, basis: Vector) -> list[Vector, complex]:
         list representing a column vector. The first matrix is the orthonormal
         matrix Q and the second matrix is the upper triangular matrix R
     """
-def gram_schmidt(matrix: Matrix) -> list[Matrix, Matrix]:
     q_matrix: Matrix = [column[:] for column in matrix]
     r_matrix: Matrix = [[0 for m in matrix] for n in matrix]
 
@@ -72,16 +69,15 @@ def gram_schmidt(matrix: Matrix) -> list[Matrix, Matrix]:
 
 #Problem 2
 
-
-"""Needs to give an orthogonal matrix with the span as the input matrix
+def orthonormalize(matrix: Matrix) -> Matrix:
+    """Needs to give an orthogonal matrix with the span as the input matrix
     Performs modified gram-schmidt method for QR factorization and returns Q
     Args:
         matrix: The matrix to be orthonormalized, represented as a list of
           lists, where each component list represents a column vector
     Returns:
         An orthonormal matrix with the same span as the input matrix
-"""
-def orthonormalize(matrix: Matrix) -> Matrix:
+    """
     return gram_schmidt(matrix)[0]
 
 
@@ -92,15 +88,14 @@ def orthonormalize(matrix: Matrix) -> Matrix:
 
 #Problem 1:
 
-
-"""Finds the conjugate transpose of a matrix
+def matconj(matrix: Matrix) -> Matrix:
+    """Finds the conjugate transpose of a matrix
     Creates a matrix that is the conjugate transpose of the input matrix
     Args:
         matrix: A matrix, represented as a list of lists of complex numbers.
     Returns:
         The conjugate transpose of the matrix, represented in the same way.
-"""
-def matconj(matrix: Matrix) -> Matrix:
+    """
     d_m: int = len(matrix[0])  
     d_n: int = len(matrix)  
     result: Matrix = [[matrix[row][col].conjugate()
@@ -108,8 +103,8 @@ def matconj(matrix: Matrix) -> Matrix:
     return result
 
 
-
-"""Finds the outer product of two column vectors
+def outer_product(left_vector: Vector, right_vector: Vector) -> Matrix: 
+    """Finds the outer product of two column vectors
     Calculate the conjugate transpose of right_vector and transform each
     vector into a matrix representation. Multiply these vector-matrices using
     the matrix multiply function, then return that matrix.
@@ -118,16 +113,15 @@ def matconj(matrix: Matrix) -> Matrix:
         right_vector: a list of complex numbers
     Returns:
         The outer product matrix = left_vector right_vector
-"""
-def outer_product(left_vector: Vector, right_vector: Vector) -> Matrix:
+    """
     right_vector_ct: Matrix = matconj([right_vector])
     left_vector_m: Matrix = [left_vector]
     result = LA.matr_matr_multi(left_vector_m, right_vector_ct)
     return result
 
 
-
-"""Calculates q_k from the kth column of a matrix R for Householder QR
+def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
+    """Calculates q_k from the kth column of a matrix R for Householder QR
     Performs the mathematical algorithm to calculate q_k for Householder QR
     factorization.
     Args:
@@ -136,8 +130,7 @@ def outer_product(left_vector: Vector, right_vector: Vector) -> Matrix:
     Returns:
         A matrix q_k such that q_k * matrix_r sets the kth column of matrix_r
         to be upper triangular
-"""
-def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
+    """
     d_m = len(matrix_r[0])
     q_k: Matrix
     q_k = [[1 if i==j else 0 for i in range(d_m)] for j in range(d_m)]
@@ -154,8 +147,8 @@ def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
     return q_k
 
 
-
-"""Performs the householder method for QR factorization
+def householder(matrix: Matrix) -> list[Matrix, Matrix]:
+    """Performs the householder method for QR factorization
     Initialize matrix_q (Q) as an identity matrix with the same number of rows
     as the input matrix, and matrix_r (R) as a copy of the input matrix. Then
     find successive matrices Q_k such that Q_k * R sets the kth column of R
@@ -167,8 +160,7 @@ def householder_qk(matrix_r: Matrix, k: int) -> Matrix:
     Returns:
         A list of matrices, where the first element is the orthogonal matrix
         Q and the second element is the upper triangular matrix R
-"""
-def householder(matrix: Matrix) -> list[Matrix, Matrix]:
+    """
     d_m: int = len(matrix[0])
     d_n: int = len(matrix)
     matrix_q: Matrix
