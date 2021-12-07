@@ -27,7 +27,7 @@ def add_vectors(vector_a: list[float],
 
 
 # Problem 1:
-def scalar_vec_multi(vector: list, scalar: complex) -> list:
+def scalar_vec_multi(vector: list[float], scalar: complex) -> list:
     """Multiplies a vector by a scalar
     Multiply each element of the vector by the scalar
     Args:
