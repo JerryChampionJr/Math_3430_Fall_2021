@@ -1,5 +1,9 @@
+#Jerry Champion Jr
+
 import LA
 
+Vector = list[float]
+Matrix = list[list[float]]
 
 def normalize(vector: Vector) -> list[Vector, float]:
     """Needs to normalize a vector
