@@ -29,4 +29,3 @@ def least_squares(matrix: Matrix, vector: Vector) -> Vector:
                 cont += vec_x[i] * mat_r[i][x_el]
         vec_x[x_el] = (vec_v[x_el] - cont) / mat_r[x_el][x_el]
     return vec_x
-
