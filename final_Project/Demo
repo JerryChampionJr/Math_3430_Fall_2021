@@ -1,1 +1,140 @@
+#Jerry Champion Jr
+
+#Imports
+
+import LA
+import QR
+import LS
+
+#Introduction Section
+
+print("Hello! My name is Jerry Champion Jr. I am a senior graduating in December of 2021.")
+print("")
+print("I have three libraries that I would like to talk about: LA.py, QR.py, and LS.py.")
+print("")
+print("")
+print("")
+
+
+
+#LA Function Section
+
+print("To begin, LA.py is the most comprehensive of my libraries with 10 functions that solve basic linear algebra expressions.") 
+print("")
+
+print("The first function in LA.py is add_vectors. This functions main purpose is to add two vectors.")
+print("For example, when given test_vector_01 = [1, 2, 3] and test_vector_02 = [4, 5, 6] this fuction will return: ")
+test_vector_01 = [1, 2, 3]
+test_vector_02 = [4, 5, 6]
+print(LA.add_vectors(test_vector_01,test_vector_02))
+
+print("")      
+print("The second function in LA.py is scalar_vec_multi. This functions main purpose is to impliment scalar-vector multiplication.")
+print("For example, when given vector_1 = [3, 2, 6] and scalar_1 = 5 this fuction will return: ")
+vector_1 = [3, 2, 6]
+scalar_1 = 5
+print(LA.scalar_vec_multi(vector_1,scalar_1))
+
+print("")            
+print("The third function in LA.py is scalar_matrix_multi. This functions main purpose is to multiply a matrix by a scalar.")
+print("For example, when given matrix_1 = [[1, 2, 3], [4, 5, 1], [1, 4, 2]] and scalar_1 = 2 this fuction will return: ")
+matrix_1 = [[1, 2, 3], [4, 5, 1], [1, 4, 2]]
+scalar_1 = 2
+print(LA.scalar_matrix_multi(matrix_1,scalar_1))
+
+print("")      
+print("The fourth function in LA.py is matrix_adding. This functions main purpose is to give the sum of two matrices.")
+print("For example, when given matrix_1 = [[1, 1], [2, 2]] and matrix_2 = [[3, 3], [4, 4]] this fuction will return: ")
+matrix_1 = [[1, 1], [2, 2]]
+matrix_2 = [[3, 3], [4, 4]]
+print(LA.matrix_adding(matrix_1,matrix_2))
+
+print("")      
+print("The fifth function in LA.py is matr_vec_multi. This functions main purpose is to impliment matrix-vector multiplication.")
+print("For example, when given matrix_1 = [[3, 1], [3, 4]] and vector_1 = [1, 1] this fuction will return: ")
+matrix_1 = [[3, 1], [3, 4]]
+vector_1 = [1, 1]
+print(LA.matr_vec_multi(matrix_1,vector_1))
+
+print("")      
+print("The sixth function in LA.py is matr_matr_multi. This functions main purpose is to impliment matrix-matrix multiplication.")
+print("For example, when given matrix_1 = [[1, 3], [7, 8]] and matrix_2 = [[3, 5], [4, 9]] this fuction will return: ")
+matrix_1 = [[1, 3], [7, 8]]
+matrix_2 = [[3, 5], [4, 9]]
+print(LA.matr_matr_multi(matrix_1,matrix_2))
+
+print("")      
+print("The seventh function in LA.py is pnorm. This functions main purpose is to give the p-norm of a vector.")
+print("For example, when given vec = [3, 4j+3] this fuction will return: ")
+vec = [3, 4j+3]
+print(LA.pnorm(vec))
+
+print("")            
+print("The eigth function in LA.py is infnorm. This functions main purpose is give the infinity norm of a vector.")
+print("For example, when given vec = [3,0,4-5j] this fuction will return: ")
+vec = [3,0,4-5j]
+print(LA.infnorm(vec))
+
+print("")            
+print("The ninth function in LA.py is boonorm. This functions main purpose is utilize boolean operators to give either the p-norm or infinity norm depending on the boolean.")
+print("For example, when given vector = [3, 4, 5, 7] this fuction will return: ")
+vector = [3, 4, 5, 7]
+print(LA.boonorm(vector))
+
+print("")      
+print("The tenth function in LA.py is inpro. This functions main purpose is to give the inner product of two vectors.")
+print("For example, when given leftvec = [1,2,3] and rightvec = [3,2,1] this fuction will return: ")
+leftvec = [1,2,3]
+rightvec = [3,2,1]
+print(LA.inpro(leftvec,rightvec))
+
+print("")
+print("")
+print("")
+
+
+#QR Function Section
+
+print("The next of my libraries is QR.py which features three functions meant to help solve more technical linear algebra expressions.")
+print("")
+
+print("The first function in QR.py is gram_schmidt. This functions main purpose is to implement the stable version of the Gram-Schmidt process.")
+print("For example, when given matrix = [1,0],[1,1]] this fuction will return: ")
+matrix = [[1,0],[1,1]]
+print(QR.gram_schmidt(matrix))
+
+print("")
+print("The second function in QR.py is orthonormalize. This functions main purpose is to .")
+print("For example, when given matrix = [[1,0],[1,1]] this fuction will return: ")
+matrix = [[1,0],[1,1]]
+print(QR.orthonormalize(matrix))
+
+print("")
+print("The third function in QR.py is householder. This functions main purpose is to .")
+print("For example, when given matrix = [[1,1,1], [-1,4,4], [4,-2,0]] this fuction will return: ")
+matrix = [[1,1,1], [-1,4,4], [4,-2,0]]
+print(QR.householder(matrix))
+
+print("")
+print("")
+print("")
+
+#LS Function section
+
+print("The last of my libraries is LS.py which features one function that is very important to linear algebra.")
+print("")
+
+print("The function in LS.py is least_squares. This functions main purpose is to take a vector and a matrix and give the least squares solution.")
+print("For example, when given Matrix = [[3,4,0],[-6,-8,1]] and Vector = [-1,7,2] this fuction will return: ")
+Matrix = [[3,4,0],[-6,-8,1]]
+Vector = [-1,7,2]
+print(LS.least_squares(Matrix,Vector))
+
+print("")
+print("")
+print("")
+
+#Conclusion
+
+print("Again, my name is Jerry Champion Jr, and my libraries are LA.py, QR.py, and LS.py. They can handle a wide array of linear algebra problems from the beginner to the advanced levels.")
 
