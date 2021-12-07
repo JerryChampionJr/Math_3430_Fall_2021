@@ -14,7 +14,7 @@ def test_scalar_vec_multi():
     scalar_1 = 5
     vector_2 = [3, 4, 1]
     scalar_2 = 2
-    assert LA.scalar_vec_multi(vector_1, scalar1_) == [15, 10, 30]
+    assert LA.scalar_vec_multi(vector_1, scalar_1) == [15, 10, 30]
     assert LA.scalar_vec_multi(vector_2, scalar_2) == [6, 8, 2]
 
 
