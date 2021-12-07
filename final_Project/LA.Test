@@ -54,9 +54,9 @@ def test_matr_matr_multi():
     assert LA.matr_matr_multi(matrix_3,matrix_4) == [[28,12],[38,16]] 
     
     
-def test_p_norm():
-    assert LA.p_norm([3, 4j+3]) == 5.830951894845301
-    assert LA.p_norm([3, 4j+3],infinite = True) == 5
+def test_pnorm():
+    assert LA.pnorm([3, 4j+3]) == 5.830951894845301
+    assert LA.pnorm([3, 4j+3],infinite = True) == 5
 
 
 def test_infnorm():
